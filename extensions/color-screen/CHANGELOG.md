@@ -1,3 +1,3 @@
-# color screen Changelog
+# Color Screen Changelog
 
-## [Initial Version] - 2025-11-27
+## [Initial Version] - {PR_MERGE_DATE}
