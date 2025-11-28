@@ -416,7 +416,10 @@ export default function Command() {
         addCustomColor(prepared);
       }
       if (launch) {
-        void handleShowColor(prepared, { trackUsage: persist, origin: persist ? "custom" : "adhoc" });
+        void handleShowColor(prepared, {
+          trackUsage: persist,
+          origin: persist ? "custom" : "adhoc",
+        });
       }
     },
     [addCustomColor, handleShowColor],
@@ -665,7 +668,12 @@ export default function Command() {
                           <CustomColorForm
                             mode="edit"
                             initialColor={color}
-                            onSubmit={(updated) => handleCustomColorSubmit(updated, { persist: true, launch: false })}
+                            onSubmit={(updated) =>
+                              handleCustomColorSubmit(updated, {
+                                persist: true,
+                                launch: false,
+                              })
+                            }
                           />
                         }
                       />
@@ -823,7 +831,10 @@ function CustomColorForm({
             onSubmit={(values: { name?: string; hex: string; hex2?: string; persist?: boolean }) => {
               const normalized = normalizeHex(values.hex);
               if (!normalized) {
-                showToast({ style: Toast.Style.Failure, title: "Enter a valid primary HEX color" });
+                showToast({
+                  style: Toast.Style.Failure,
+                  title: "Enter a valid primary HEX color",
+                });
                 return;
               }
 
@@ -831,7 +842,10 @@ function CustomColorForm({
               if (values.hex2 && values.hex2.trim().length > 0) {
                 normalized2 = normalizeHex(values.hex2);
                 if (!normalized2) {
-                  showToast({ style: Toast.Style.Failure, title: "Secondary HEX color is invalid" });
+                  showToast({
+                    style: Toast.Style.Failure,
+                    title: "Secondary HEX color is invalid",
+                  });
                   return;
                 }
               }
@@ -959,7 +973,10 @@ function launchColorOverlay(hex: string, hex2?: string) {
 
     const args = [scriptPath, normalized, ...(normalized2 ? [normalized2] : [])];
 
-    const child = spawn(swiftExecutable, args, { detached: true, stdio: "ignore" });
+    const child = spawn(swiftExecutable, args, {
+      detached: true,
+      stdio: "ignore",
+    });
 
     let settled = false;
     const timer = setTimeout(() => {
